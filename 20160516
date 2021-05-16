@@ -1,0 +1,1718 @@
+디비의 컬럼이나 구조를 수정
+ alter 
+ 
+ alter table table명 change 수정전column 수정할column varchar(30);
+							[자료형]
+
+ alter table books modify colunm title varchar(30);
+
+ alter table books modify column publisher varchar(20) not null;
+
+ alter table books add column sub_title varchar(45) null after title;
+                   
+ title 뒤에 sub_title 이라는 column 추가
+
+ alter table books add column publication_date date not null;
+
+ alter table books add column reg_date timestamp not null default current_timestamp
+ -> 기본값으로 현재값을 찍어서 넣겟다
+
+ alter table books auto_increment = 1;
+->book_id 의 auto_increment 를 1로 초기화한다. 
+
+ insert into books(title, sub_title, publisher, price , publication_date) values
+    -> ("비전공자를 위한 이해할 수 있는 IT지식", null, "최원영", 15120,
+    -> "2020-07-14"),
+    -> ("혼자 공부하는 파이썬", "파이썬 최신 버전 반영" , "윤인성", 16200, "2019-06-10"),
+    -> ("Do it! 점프 투 파이썬", "이미 200만명이 이책으로 프로그래밍을 시작했다! 중학생도, 문과생도 쉽게 배운다!
+    -> ", "박응용" ,16920 , "2019-06-20"),
+    -> ("한 권으로 읽는 컴퓨터 구조와 프로그래밍", "더 나은 소프트웨어 개발을 위한 하드웨어", "조너선 스타인하트"
+    -> ,31500,"2021-04-08"),
+    -> ("Clean Code(클린코드)", "애자일 소프트웨어 장인 정신", "로버트 C, 마틴" , 29700, "2013-12-24")
+    -> ;
+
+ 입사일이 2000,01,01일 이전사람에게 연봉을 1,000,000 원 인상!
+ Update Employee set salary = salary+1000000 where date_format(hire_date , "%Y-%m-%d") < "2000-01-03";
+
+ select * from books order by title; 오름차순
+ select * from books order by title desc; 내림차순
+ select title, pulication_date from books order by publication_date desc limit 1;
+-> publication_date기준으로 내림차순으로 한후 결과값을 하나만보겠다.
+ 
+ as alias(별명)
+ 컬럼, 테이블에 적용 가능
+ 
+ 4079 rows in set (0.02 sec)
+
+mysql> select name from city where countrycode="kor" or countrycode="jpn" or countrycode="can" and population >5000000;
++---------------------+
+| name                |
++---------------------+
+| Tokyo               |
+| Jokohama [Yokohama] |
+| Osaka               |
+| Nagoya              |
+| Sapporo             |
+| Kioto               |
+| Kobe                |
+| Fukuoka             |
+| Kawasaki            |
+| Hiroshima           |
+| Kitakyushu          |
+| Sendai              |
+| Chiba               |
+| Sakai               |
+| Kumamoto            |
+| Okayama             |
+| Sagamihara          |
+| Hamamatsu           |
+| Kagoshima           |
+| Funabashi           |
+| Higashiosaka        |
+| Hachioji            |
+| Niigata             |
+| Amagasaki           |
+| Himeji              |
+| Shizuoka            |
+| Urawa               |
+| Matsuyama           |
+| Matsudo             |
+| Kanazawa            |
+| Kawaguchi           |
+| Ichikawa            |
+| Omiya               |
+| Utsunomiya          |
+| Oita                |
+| Nagasaki            |
+| Yokosuka            |
+| Kurashiki           |
+| Gifu                |
+| Hirakata            |
+| Nishinomiya         |
+| Toyonaka            |
+| Wakayama            |
+| Fukuyama            |
+| Fujisawa            |
+| Asahikawa           |
+| Machida             |
+| Nara                |
+| Takatsuki           |
+| Iwaki               |
+| Nagano              |
+| Toyohashi           |
+| Toyota              |
+| Suita               |
+| Takamatsu           |
+| Koriyama            |
+| Okazaki             |
+| Kawagoe             |
+| Tokorozawa          |
+| Toyama              |
+| Kochi               |
+| Kashiwa             |
+| Akita               |
+| Miyazaki            |
+| Koshigaya           |
+| Naha                |
+| Aomori              |
+| Hakodate            |
+| Akashi              |
+| Yokkaichi           |
+| Fukushima           |
+| Morioka             |
+| Maebashi            |
+| Kasugai             |
+| Otsu                |
+| Ichihara            |
+| Yao                 |
+| Ichinomiya          |
+| Tokushima           |
+| Kakogawa            |
+| Ibaraki             |
+| Neyagawa            |
+| Shimonoseki         |
+| Yamagata            |
+| Fukui               |
+| Hiratsuka           |
+| Mito                |
+| Sasebo              |
+| Hachinohe           |
+| Takasaki            |
+| Shimizu             |
+| Kurume              |
+| Fuji                |
+| Soka                |
+| Fuchu               |
+| Chigasaki           |
+| Atsugi              |
+| Numazu              |
+| Ageo                |
+| Yamato              |
+| Matsumoto           |
+| Kure                |
+| Takarazuka          |
+| Kasukabe            |
+| Chofu               |
+| Odawara             |
+| Kofu                |
+| Kushiro             |
+| Kishiwada           |
+| Hitachi             |
+| Nagaoka             |
+| Itami               |
+| Uji                 |
+| Suzuka              |
+| Hirosaki            |
+| Ube                 |
+| Kodaira             |
+| Takaoka             |
+| Obihiro             |
+| Tomakomai           |
+| Saga                |
+| Sakura              |
+| Kamakura            |
+| Mitaka              |
+| Izumi               |
+| Hino                |
+| Hadano              |
+| Ashikaga            |
+| Tsu                 |
+| Sayama              |
+| Yachiyo             |
+| Tsukuba             |
+| Tachikawa           |
+| Kumagaya            |
+| Moriguchi           |
+| Otaru               |
+| Anjo                |
+| Narashino           |
+| Oyama               |
+| Ogaki               |
+| Matsue              |
+| Kawanishi           |
+| Hitachinaka         |
+| Niiza               |
+| Nagareyama          |
+| Tottori             |
+| Tama                |
+| Iruma               |
+| Ota                 |
+| Omuta               |
+| Komaki              |
+| Ome                 |
+| Kadoma              |
+| Yamaguchi           |
+| Higashimurayama     |
+| Yonago              |
+| Matsubara           |
+| Musashino           |
+| Tsuchiura           |
+| Joetsu              |
+| Miyakonojo          |
+| Misato              |
+| Kakamigahara        |
+| Daito               |
+| Seto                |
+| Kariya              |
+| Urayasu             |
+| Beppu               |
+| Niihama             |
+| Minoo               |
+| Fujieda             |
+| Abiko               |
+| Nobeoka             |
+| Tondabayashi        |
+| Ueda                |
+| Kashihara           |
+| Matsusaka           |
+| Isesaki             |
+| Zama                |
+| Kisarazu            |
+| Noda                |
+| Ishinomaki          |
+| Fujinomiya          |
+| Kawachinagano       |
+| Imabari             |
+| Aizuwakamatsu       |
+| Higashihiroshima    |
+| Habikino            |
+| Ebetsu              |
+| Hofu                |
+| Kiryu               |
+| Okinawa             |
+| Yaizu               |
+| Toyokawa            |
+| Ebina               |
+| Asaka               |
+| Higashikurume       |
+| Ikoma               |
+| Kitami              |
+| Koganei             |
+| Iwatsuki            |
+| Mishima             |
+| Handa               |
+| Muroran             |
+| Komatsu             |
+| Yatsushiro          |
+| Iida                |
+| Tokuyama            |
+| Kokubunji           |
+| Akishima            |
+| Iwakuni             |
+| Kusatsu             |
+| Kuwana              |
+| Sanda               |
+| Hikone              |
+| Toda                |
+| Tajimi              |
+| Ikeda               |
+| Fukaya              |
+| Ise                 |
+| Sakata              |
+| Kasuga              |
+| Kamagaya            |
+| Tsuruoka            |
+| Hoya                |
+| Nishio              |
+| Tokai               |
+| Inazawa             |
+| Sakado              |
+| Isehara             |
+| Takasago            |
+| Fujimi              |
+| Urasoe              |
+| Yonezawa            |
+| Konan               |
+| Yamatokoriyama      |
+| Maizuru             |
+| Onomichi            |
+| Higashimatsuyama    |
+| Kimitsu             |
+| Isahaya             |
+| Kanuma              |
+| Izumisano           |
+| Kameoka             |
+| Mobara              |
+| Narita              |
+| Kashiwazaki         |
+| Tsuyama             |
+| Seoul               |
+| Pusan               |
+| Inchon              |
+| Taegu               |
+| Taejon              |
+| Kwangju             |
+| Ulsan               |
+| Songnam             |
+| Puchon              |
+| Suwon               |
+| Anyang              |
+| Chonju              |
+| Chongju             |
+| Koyang              |
+| Ansan               |
+| Pohang              |
+| Chang-won           |
+| Masan               |
+| Kwangmyong          |
+| Chonan              |
+| Chinju              |
+| Iksan               |
+| Pyongtaek           |
+| Kumi                |
+| Uijongbu            |
+| Kyongju             |
+| Kunsan              |
+| Cheju               |
+| Kimhae              |
+| Sunchon             |
+| Mokpo               |
+| Yong-in             |
+| Wonju               |
+| Kunpo               |
+| Chunchon            |
+| Namyangju           |
+| Kangnung            |
+| Chungju             |
+| Andong              |
+| Yosu                |
+| Kyongsan            |
+| Paju                |
+| Yangsan             |
+| Ichon               |
+| Asan                |
+| Koje                |
+| Kimchon             |
+| Nonsan              |
+| Kuri                |
+| Chong-up            |
+| Chechon             |
+| Sosan               |
+| Shihung             |
+| Tong-yong           |
+| Kongju              |
+| Yongju              |
+| Chinhae             |
+| Sangju              |
+| Poryong             |
+| Kwang-yang          |
+| Miryang             |
+| Hanam               |
+| Kimje               |
+| Yongchon            |
+| Sachon              |
+| Uiwang              |
+| Naju                |
+| Namwon              |
+| Tonghae             |
+| Mun-gyong           |
++---------------------+
+318 rows in set (0.01 sec)
+
+mysql> select name, countrycode '나라' from city where countrycode="kor" or countrycode="jpn" or countrycode="can" and population >5000000;
++---------------------+------+
+| name                | 나라 |
++---------------------+------+
+| Tokyo               | JPN  |
+| Jokohama [Yokohama] | JPN  |
+| Osaka               | JPN  |
+| Nagoya              | JPN  |
+| Sapporo             | JPN  |
+| Kioto               | JPN  |
+| Kobe                | JPN  |
+| Fukuoka             | JPN  |
+| Kawasaki            | JPN  |
+| Hiroshima           | JPN  |
+| Kitakyushu          | JPN  |
+| Sendai              | JPN  |
+| Chiba               | JPN  |
+| Sakai               | JPN  |
+| Kumamoto            | JPN  |
+| Okayama             | JPN  |
+| Sagamihara          | JPN  |
+| Hamamatsu           | JPN  |
+| Kagoshima           | JPN  |
+| Funabashi           | JPN  |
+| Higashiosaka        | JPN  |
+| Hachioji            | JPN  |
+| Niigata             | JPN  |
+| Amagasaki           | JPN  |
+| Himeji              | JPN  |
+| Shizuoka            | JPN  |
+| Urawa               | JPN  |
+| Matsuyama           | JPN  |
+| Matsudo             | JPN  |
+| Kanazawa            | JPN  |
+| Kawaguchi           | JPN  |
+| Ichikawa            | JPN  |
+| Omiya               | JPN  |
+| Utsunomiya          | JPN  |
+| Oita                | JPN  |
+| Nagasaki            | JPN  |
+| Yokosuka            | JPN  |
+| Kurashiki           | JPN  |
+| Gifu                | JPN  |
+| Hirakata            | JPN  |
+| Nishinomiya         | JPN  |
+| Toyonaka            | JPN  |
+| Wakayama            | JPN  |
+| Fukuyama            | JPN  |
+| Fujisawa            | JPN  |
+| Asahikawa           | JPN  |
+| Machida             | JPN  |
+| Nara                | JPN  |
+| Takatsuki           | JPN  |
+| Iwaki               | JPN  |
+| Nagano              | JPN  |
+| Toyohashi           | JPN  |
+| Toyota              | JPN  |
+| Suita               | JPN  |
+| Takamatsu           | JPN  |
+| Koriyama            | JPN  |
+| Okazaki             | JPN  |
+| Kawagoe             | JPN  |
+| Tokorozawa          | JPN  |
+| Toyama              | JPN  |
+| Kochi               | JPN  |
+| Kashiwa             | JPN  |
+| Akita               | JPN  |
+| Miyazaki            | JPN  |
+| Koshigaya           | JPN  |
+| Naha                | JPN  |
+| Aomori              | JPN  |
+| Hakodate            | JPN  |
+| Akashi              | JPN  |
+| Yokkaichi           | JPN  |
+| Fukushima           | JPN  |
+| Morioka             | JPN  |
+| Maebashi            | JPN  |
+| Kasugai             | JPN  |
+| Otsu                | JPN  |
+| Ichihara            | JPN  |
+| Yao                 | JPN  |
+| Ichinomiya          | JPN  |
+| Tokushima           | JPN  |
+| Kakogawa            | JPN  |
+| Ibaraki             | JPN  |
+| Neyagawa            | JPN  |
+| Shimonoseki         | JPN  |
+| Yamagata            | JPN  |
+| Fukui               | JPN  |
+| Hiratsuka           | JPN  |
+| Mito                | JPN  |
+| Sasebo              | JPN  |
+| Hachinohe           | JPN  |
+| Takasaki            | JPN  |
+| Shimizu             | JPN  |
+| Kurume              | JPN  |
+| Fuji                | JPN  |
+| Soka                | JPN  |
+| Fuchu               | JPN  |
+| Chigasaki           | JPN  |
+| Atsugi              | JPN  |
+| Numazu              | JPN  |
+| Ageo                | JPN  |
+| Yamato              | JPN  |
+| Matsumoto           | JPN  |
+| Kure                | JPN  |
+| Takarazuka          | JPN  |
+| Kasukabe            | JPN  |
+| Chofu               | JPN  |
+| Odawara             | JPN  |
+| Kofu                | JPN  |
+| Kushiro             | JPN  |
+| Kishiwada           | JPN  |
+| Hitachi             | JPN  |
+| Nagaoka             | JPN  |
+| Itami               | JPN  |
+| Uji                 | JPN  |
+| Suzuka              | JPN  |
+| Hirosaki            | JPN  |
+| Ube                 | JPN  |
+| Kodaira             | JPN  |
+| Takaoka             | JPN  |
+| Obihiro             | JPN  |
+| Tomakomai           | JPN  |
+| Saga                | JPN  |
+| Sakura              | JPN  |
+| Kamakura            | JPN  |
+| Mitaka              | JPN  |
+| Izumi               | JPN  |
+| Hino                | JPN  |
+| Hadano              | JPN  |
+| Ashikaga            | JPN  |
+| Tsu                 | JPN  |
+| Sayama              | JPN  |
+| Yachiyo             | JPN  |
+| Tsukuba             | JPN  |
+| Tachikawa           | JPN  |
+| Kumagaya            | JPN  |
+| Moriguchi           | JPN  |
+| Otaru               | JPN  |
+| Anjo                | JPN  |
+| Narashino           | JPN  |
+| Oyama               | JPN  |
+| Ogaki               | JPN  |
+| Matsue              | JPN  |
+| Kawanishi           | JPN  |
+| Hitachinaka         | JPN  |
+| Niiza               | JPN  |
+| Nagareyama          | JPN  |
+| Tottori             | JPN  |
+| Tama                | JPN  |
+| Iruma               | JPN  |
+| Ota                 | JPN  |
+| Omuta               | JPN  |
+| Komaki              | JPN  |
+| Ome                 | JPN  |
+| Kadoma              | JPN  |
+| Yamaguchi           | JPN  |
+| Higashimurayama     | JPN  |
+| Yonago              | JPN  |
+| Matsubara           | JPN  |
+| Musashino           | JPN  |
+| Tsuchiura           | JPN  |
+| Joetsu              | JPN  |
+| Miyakonojo          | JPN  |
+| Misato              | JPN  |
+| Kakamigahara        | JPN  |
+| Daito               | JPN  |
+| Seto                | JPN  |
+| Kariya              | JPN  |
+| Urayasu             | JPN  |
+| Beppu               | JPN  |
+| Niihama             | JPN  |
+| Minoo               | JPN  |
+| Fujieda             | JPN  |
+| Abiko               | JPN  |
+| Nobeoka             | JPN  |
+| Tondabayashi        | JPN  |
+| Ueda                | JPN  |
+| Kashihara           | JPN  |
+| Matsusaka           | JPN  |
+| Isesaki             | JPN  |
+| Zama                | JPN  |
+| Kisarazu            | JPN  |
+| Noda                | JPN  |
+| Ishinomaki          | JPN  |
+| Fujinomiya          | JPN  |
+| Kawachinagano       | JPN  |
+| Imabari             | JPN  |
+| Aizuwakamatsu       | JPN  |
+| Higashihiroshima    | JPN  |
+| Habikino            | JPN  |
+| Ebetsu              | JPN  |
+| Hofu                | JPN  |
+| Kiryu               | JPN  |
+| Okinawa             | JPN  |
+| Yaizu               | JPN  |
+| Toyokawa            | JPN  |
+| Ebina               | JPN  |
+| Asaka               | JPN  |
+| Higashikurume       | JPN  |
+| Ikoma               | JPN  |
+| Kitami              | JPN  |
+| Koganei             | JPN  |
+| Iwatsuki            | JPN  |
+| Mishima             | JPN  |
+| Handa               | JPN  |
+| Muroran             | JPN  |
+| Komatsu             | JPN  |
+| Yatsushiro          | JPN  |
+| Iida                | JPN  |
+| Tokuyama            | JPN  |
+| Kokubunji           | JPN  |
+| Akishima            | JPN  |
+| Iwakuni             | JPN  |
+| Kusatsu             | JPN  |
+| Kuwana              | JPN  |
+| Sanda               | JPN  |
+| Hikone              | JPN  |
+| Toda                | JPN  |
+| Tajimi              | JPN  |
+| Ikeda               | JPN  |
+| Fukaya              | JPN  |
+| Ise                 | JPN  |
+| Sakata              | JPN  |
+| Kasuga              | JPN  |
+| Kamagaya            | JPN  |
+| Tsuruoka            | JPN  |
+| Hoya                | JPN  |
+| Nishio              | JPN  |
+| Tokai               | JPN  |
+| Inazawa             | JPN  |
+| Sakado              | JPN  |
+| Isehara             | JPN  |
+| Takasago            | JPN  |
+| Fujimi              | JPN  |
+| Urasoe              | JPN  |
+| Yonezawa            | JPN  |
+| Konan               | JPN  |
+| Yamatokoriyama      | JPN  |
+| Maizuru             | JPN  |
+| Onomichi            | JPN  |
+| Higashimatsuyama    | JPN  |
+| Kimitsu             | JPN  |
+| Isahaya             | JPN  |
+| Kanuma              | JPN  |
+| Izumisano           | JPN  |
+| Kameoka             | JPN  |
+| Mobara              | JPN  |
+| Narita              | JPN  |
+| Kashiwazaki         | JPN  |
+| Tsuyama             | JPN  |
+| Seoul               | KOR  |
+| Pusan               | KOR  |
+| Inchon              | KOR  |
+| Taegu               | KOR  |
+| Taejon              | KOR  |
+| Kwangju             | KOR  |
+| Ulsan               | KOR  |
+| Songnam             | KOR  |
+| Puchon              | KOR  |
+| Suwon               | KOR  |
+| Anyang              | KOR  |
+| Chonju              | KOR  |
+| Chongju             | KOR  |
+| Koyang              | KOR  |
+| Ansan               | KOR  |
+| Pohang              | KOR  |
+| Chang-won           | KOR  |
+| Masan               | KOR  |
+| Kwangmyong          | KOR  |
+| Chonan              | KOR  |
+| Chinju              | KOR  |
+| Iksan               | KOR  |
+| Pyongtaek           | KOR  |
+| Kumi                | KOR  |
+| Uijongbu            | KOR  |
+| Kyongju             | KOR  |
+| Kunsan              | KOR  |
+| Cheju               | KOR  |
+| Kimhae              | KOR  |
+| Sunchon             | KOR  |
+| Mokpo               | KOR  |
+| Yong-in             | KOR  |
+| Wonju               | KOR  |
+| Kunpo               | KOR  |
+| Chunchon            | KOR  |
+| Namyangju           | KOR  |
+| Kangnung            | KOR  |
+| Chungju             | KOR  |
+| Andong              | KOR  |
+| Yosu                | KOR  |
+| Kyongsan            | KOR  |
+| Paju                | KOR  |
+| Yangsan             | KOR  |
+| Ichon               | KOR  |
+| Asan                | KOR  |
+| Koje                | KOR  |
+| Kimchon             | KOR  |
+| Nonsan              | KOR  |
+| Kuri                | KOR  |
+| Chong-up            | KOR  |
+| Chechon             | KOR  |
+| Sosan               | KOR  |
+| Shihung             | KOR  |
+| Tong-yong           | KOR  |
+| Kongju              | KOR  |
+| Yongju              | KOR  |
+| Chinhae             | KOR  |
+| Sangju              | KOR  |
+| Poryong             | KOR  |
+| Kwang-yang          | KOR  |
+| Miryang             | KOR  |
+| Hanam               | KOR  |
+| Kimje               | KOR  |
+| Yongchon            | KOR  |
+| Sachon              | KOR  |
+| Uiwang              | KOR  |
+| Naju                | KOR  |
+| Namwon              | KOR  |
+| Tonghae             | KOR  |
+| Mun-gyong           | KOR  |
++---------------------+------+
+318 rows in set (0.00 sec)
+
+mysql> select name, countrycode '나라' from city where countrycode="kor" or countrycode="jpn" or countrycode="can" and population >50000000;
++---------------------+------+
+| name                | 나라 |
++---------------------+------+
+| Tokyo               | JPN  |
+| Jokohama [Yokohama] | JPN  |
+| Osaka               | JPN  |
+| Nagoya              | JPN  |
+| Sapporo             | JPN  |
+| Kioto               | JPN  |
+| Kobe                | JPN  |
+| Fukuoka             | JPN  |
+| Kawasaki            | JPN  |
+| Hiroshima           | JPN  |
+| Kitakyushu          | JPN  |
+| Sendai              | JPN  |
+| Chiba               | JPN  |
+| Sakai               | JPN  |
+| Kumamoto            | JPN  |
+| Okayama             | JPN  |
+| Sagamihara          | JPN  |
+| Hamamatsu           | JPN  |
+| Kagoshima           | JPN  |
+| Funabashi           | JPN  |
+| Higashiosaka        | JPN  |
+| Hachioji            | JPN  |
+| Niigata             | JPN  |
+| Amagasaki           | JPN  |
+| Himeji              | JPN  |
+| Shizuoka            | JPN  |
+| Urawa               | JPN  |
+| Matsuyama           | JPN  |
+| Matsudo             | JPN  |
+| Kanazawa            | JPN  |
+| Kawaguchi           | JPN  |
+| Ichikawa            | JPN  |
+| Omiya               | JPN  |
+| Utsunomiya          | JPN  |
+| Oita                | JPN  |
+| Nagasaki            | JPN  |
+| Yokosuka            | JPN  |
+| Kurashiki           | JPN  |
+| Gifu                | JPN  |
+| Hirakata            | JPN  |
+| Nishinomiya         | JPN  |
+| Toyonaka            | JPN  |
+| Wakayama            | JPN  |
+| Fukuyama            | JPN  |
+| Fujisawa            | JPN  |
+| Asahikawa           | JPN  |
+| Machida             | JPN  |
+| Nara                | JPN  |
+| Takatsuki           | JPN  |
+| Iwaki               | JPN  |
+| Nagano              | JPN  |
+| Toyohashi           | JPN  |
+| Toyota              | JPN  |
+| Suita               | JPN  |
+| Takamatsu           | JPN  |
+| Koriyama            | JPN  |
+| Okazaki             | JPN  |
+| Kawagoe             | JPN  |
+| Tokorozawa          | JPN  |
+| Toyama              | JPN  |
+| Kochi               | JPN  |
+| Kashiwa             | JPN  |
+| Akita               | JPN  |
+| Miyazaki            | JPN  |
+| Koshigaya           | JPN  |
+| Naha                | JPN  |
+| Aomori              | JPN  |
+| Hakodate            | JPN  |
+| Akashi              | JPN  |
+| Yokkaichi           | JPN  |
+| Fukushima           | JPN  |
+| Morioka             | JPN  |
+| Maebashi            | JPN  |
+| Kasugai             | JPN  |
+| Otsu                | JPN  |
+| Ichihara            | JPN  |
+| Yao                 | JPN  |
+| Ichinomiya          | JPN  |
+| Tokushima           | JPN  |
+| Kakogawa            | JPN  |
+| Ibaraki             | JPN  |
+| Neyagawa            | JPN  |
+| Shimonoseki         | JPN  |
+| Yamagata            | JPN  |
+| Fukui               | JPN  |
+| Hiratsuka           | JPN  |
+| Mito                | JPN  |
+| Sasebo              | JPN  |
+| Hachinohe           | JPN  |
+| Takasaki            | JPN  |
+| Shimizu             | JPN  |
+| Kurume              | JPN  |
+| Fuji                | JPN  |
+| Soka                | JPN  |
+| Fuchu               | JPN  |
+| Chigasaki           | JPN  |
+| Atsugi              | JPN  |
+| Numazu              | JPN  |
+| Ageo                | JPN  |
+| Yamato              | JPN  |
+| Matsumoto           | JPN  |
+| Kure                | JPN  |
+| Takarazuka          | JPN  |
+| Kasukabe            | JPN  |
+| Chofu               | JPN  |
+| Odawara             | JPN  |
+| Kofu                | JPN  |
+| Kushiro             | JPN  |
+| Kishiwada           | JPN  |
+| Hitachi             | JPN  |
+| Nagaoka             | JPN  |
+| Itami               | JPN  |
+| Uji                 | JPN  |
+| Suzuka              | JPN  |
+| Hirosaki            | JPN  |
+| Ube                 | JPN  |
+| Kodaira             | JPN  |
+| Takaoka             | JPN  |
+| Obihiro             | JPN  |
+| Tomakomai           | JPN  |
+| Saga                | JPN  |
+| Sakura              | JPN  |
+| Kamakura            | JPN  |
+| Mitaka              | JPN  |
+| Izumi               | JPN  |
+| Hino                | JPN  |
+| Hadano              | JPN  |
+| Ashikaga            | JPN  |
+| Tsu                 | JPN  |
+| Sayama              | JPN  |
+| Yachiyo             | JPN  |
+| Tsukuba             | JPN  |
+| Tachikawa           | JPN  |
+| Kumagaya            | JPN  |
+| Moriguchi           | JPN  |
+| Otaru               | JPN  |
+| Anjo                | JPN  |
+| Narashino           | JPN  |
+| Oyama               | JPN  |
+| Ogaki               | JPN  |
+| Matsue              | JPN  |
+| Kawanishi           | JPN  |
+| Hitachinaka         | JPN  |
+| Niiza               | JPN  |
+| Nagareyama          | JPN  |
+| Tottori             | JPN  |
+| Tama                | JPN  |
+| Iruma               | JPN  |
+| Ota                 | JPN  |
+| Omuta               | JPN  |
+| Komaki              | JPN  |
+| Ome                 | JPN  |
+| Kadoma              | JPN  |
+| Yamaguchi           | JPN  |
+| Higashimurayama     | JPN  |
+| Yonago              | JPN  |
+| Matsubara           | JPN  |
+| Musashino           | JPN  |
+| Tsuchiura           | JPN  |
+| Joetsu              | JPN  |
+| Miyakonojo          | JPN  |
+| Misato              | JPN  |
+| Kakamigahara        | JPN  |
+| Daito               | JPN  |
+| Seto                | JPN  |
+| Kariya              | JPN  |
+| Urayasu             | JPN  |
+| Beppu               | JPN  |
+| Niihama             | JPN  |
+| Minoo               | JPN  |
+| Fujieda             | JPN  |
+| Abiko               | JPN  |
+| Nobeoka             | JPN  |
+| Tondabayashi        | JPN  |
+| Ueda                | JPN  |
+| Kashihara           | JPN  |
+| Matsusaka           | JPN  |
+| Isesaki             | JPN  |
+| Zama                | JPN  |
+| Kisarazu            | JPN  |
+| Noda                | JPN  |
+| Ishinomaki          | JPN  |
+| Fujinomiya          | JPN  |
+| Kawachinagano       | JPN  |
+| Imabari             | JPN  |
+| Aizuwakamatsu       | JPN  |
+| Higashihiroshima    | JPN  |
+| Habikino            | JPN  |
+| Ebetsu              | JPN  |
+| Hofu                | JPN  |
+| Kiryu               | JPN  |
+| Okinawa             | JPN  |
+| Yaizu               | JPN  |
+| Toyokawa            | JPN  |
+| Ebina               | JPN  |
+| Asaka               | JPN  |
+| Higashikurume       | JPN  |
+| Ikoma               | JPN  |
+| Kitami              | JPN  |
+| Koganei             | JPN  |
+| Iwatsuki            | JPN  |
+| Mishima             | JPN  |
+| Handa               | JPN  |
+| Muroran             | JPN  |
+| Komatsu             | JPN  |
+| Yatsushiro          | JPN  |
+| Iida                | JPN  |
+| Tokuyama            | JPN  |
+| Kokubunji           | JPN  |
+| Akishima            | JPN  |
+| Iwakuni             | JPN  |
+| Kusatsu             | JPN  |
+| Kuwana              | JPN  |
+| Sanda               | JPN  |
+| Hikone              | JPN  |
+| Toda                | JPN  |
+| Tajimi              | JPN  |
+| Ikeda               | JPN  |
+| Fukaya              | JPN  |
+| Ise                 | JPN  |
+| Sakata              | JPN  |
+| Kasuga              | JPN  |
+| Kamagaya            | JPN  |
+| Tsuruoka            | JPN  |
+| Hoya                | JPN  |
+| Nishio              | JPN  |
+| Tokai               | JPN  |
+| Inazawa             | JPN  |
+| Sakado              | JPN  |
+| Isehara             | JPN  |
+| Takasago            | JPN  |
+| Fujimi              | JPN  |
+| Urasoe              | JPN  |
+| Yonezawa            | JPN  |
+| Konan               | JPN  |
+| Yamatokoriyama      | JPN  |
+| Maizuru             | JPN  |
+| Onomichi            | JPN  |
+| Higashimatsuyama    | JPN  |
+| Kimitsu             | JPN  |
+| Isahaya             | JPN  |
+| Kanuma              | JPN  |
+| Izumisano           | JPN  |
+| Kameoka             | JPN  |
+| Mobara              | JPN  |
+| Narita              | JPN  |
+| Kashiwazaki         | JPN  |
+| Tsuyama             | JPN  |
+| Seoul               | KOR  |
+| Pusan               | KOR  |
+| Inchon              | KOR  |
+| Taegu               | KOR  |
+| Taejon              | KOR  |
+| Kwangju             | KOR  |
+| Ulsan               | KOR  |
+| Songnam             | KOR  |
+| Puchon              | KOR  |
+| Suwon               | KOR  |
+| Anyang              | KOR  |
+| Chonju              | KOR  |
+| Chongju             | KOR  |
+| Koyang              | KOR  |
+| Ansan               | KOR  |
+| Pohang              | KOR  |
+| Chang-won           | KOR  |
+| Masan               | KOR  |
+| Kwangmyong          | KOR  |
+| Chonan              | KOR  |
+| Chinju              | KOR  |
+| Iksan               | KOR  |
+| Pyongtaek           | KOR  |
+| Kumi                | KOR  |
+| Uijongbu            | KOR  |
+| Kyongju             | KOR  |
+| Kunsan              | KOR  |
+| Cheju               | KOR  |
+| Kimhae              | KOR  |
+| Sunchon             | KOR  |
+| Mokpo               | KOR  |
+| Yong-in             | KOR  |
+| Wonju               | KOR  |
+| Kunpo               | KOR  |
+| Chunchon            | KOR  |
+| Namyangju           | KOR  |
+| Kangnung            | KOR  |
+| Chungju             | KOR  |
+| Andong              | KOR  |
+| Yosu                | KOR  |
+| Kyongsan            | KOR  |
+| Paju                | KOR  |
+| Yangsan             | KOR  |
+| Ichon               | KOR  |
+| Asan                | KOR  |
+| Koje                | KOR  |
+| Kimchon             | KOR  |
+| Nonsan              | KOR  |
+| Kuri                | KOR  |
+| Chong-up            | KOR  |
+| Chechon             | KOR  |
+| Sosan               | KOR  |
+| Shihung             | KOR  |
+| Tong-yong           | KOR  |
+| Kongju              | KOR  |
+| Yongju              | KOR  |
+| Chinhae             | KOR  |
+| Sangju              | KOR  |
+| Poryong             | KOR  |
+| Kwang-yang          | KOR  |
+| Miryang             | KOR  |
+| Hanam               | KOR  |
+| Kimje               | KOR  |
+| Yongchon            | KOR  |
+| Sachon              | KOR  |
+| Uiwang              | KOR  |
+| Naju                | KOR  |
+| Namwon              | KOR  |
+| Tonghae             | KOR  |
+| Mun-gyong           | KOR  |
++---------------------+------+
+318 rows in set (0.00 sec)
+
+mysql> select name, countrycode '나라' from city where countrycode="kor" or countrycode="jpn" or countrycode="can" and population >50000000;
++---------------------+------+
+| name                | 나라 |
++---------------------+------+
+| Tokyo               | JPN  |
+| Jokohama [Yokohama] | JPN  |
+| Osaka               | JPN  |
+| Nagoya              | JPN  |
+| Sapporo             | JPN  |
+| Kioto               | JPN  |
+| Kobe                | JPN  |
+| Fukuoka             | JPN  |
+| Kawasaki            | JPN  |
+| Hiroshima           | JPN  |
+| Kitakyushu          | JPN  |
+| Sendai              | JPN  |
+| Chiba               | JPN  |
+| Sakai               | JPN  |
+| Kumamoto            | JPN  |
+| Okayama             | JPN  |
+| Sagamihara          | JPN  |
+| Hamamatsu           | JPN  |
+| Kagoshima           | JPN  |
+| Funabashi           | JPN  |
+| Higashiosaka        | JPN  |
+| Hachioji            | JPN  |
+| Niigata             | JPN  |
+| Amagasaki           | JPN  |
+| Himeji              | JPN  |
+| Shizuoka            | JPN  |
+| Urawa               | JPN  |
+| Matsuyama           | JPN  |
+| Matsudo             | JPN  |
+| Kanazawa            | JPN  |
+| Kawaguchi           | JPN  |
+| Ichikawa            | JPN  |
+| Omiya               | JPN  |
+| Utsunomiya          | JPN  |
+| Oita                | JPN  |
+| Nagasaki            | JPN  |
+| Yokosuka            | JPN  |
+| Kurashiki           | JPN  |
+| Gifu                | JPN  |
+| Hirakata            | JPN  |
+| Nishinomiya         | JPN  |
+| Toyonaka            | JPN  |
+| Wakayama            | JPN  |
+| Fukuyama            | JPN  |
+| Fujisawa            | JPN  |
+| Asahikawa           | JPN  |
+| Machida             | JPN  |
+| Nara                | JPN  |
+| Takatsuki           | JPN  |
+| Iwaki               | JPN  |
+| Nagano              | JPN  |
+| Toyohashi           | JPN  |
+| Toyota              | JPN  |
+| Suita               | JPN  |
+| Takamatsu           | JPN  |
+| Koriyama            | JPN  |
+| Okazaki             | JPN  |
+| Kawagoe             | JPN  |
+| Tokorozawa          | JPN  |
+| Toyama              | JPN  |
+| Kochi               | JPN  |
+| Kashiwa             | JPN  |
+| Akita               | JPN  |
+| Miyazaki            | JPN  |
+| Koshigaya           | JPN  |
+| Naha                | JPN  |
+| Aomori              | JPN  |
+| Hakodate            | JPN  |
+| Akashi              | JPN  |
+| Yokkaichi           | JPN  |
+| Fukushima           | JPN  |
+| Morioka             | JPN  |
+| Maebashi            | JPN  |
+| Kasugai             | JPN  |
+| Otsu                | JPN  |
+| Ichihara            | JPN  |
+| Yao                 | JPN  |
+| Ichinomiya          | JPN  |
+| Tokushima           | JPN  |
+| Kakogawa            | JPN  |
+| Ibaraki             | JPN  |
+| Neyagawa            | JPN  |
+| Shimonoseki         | JPN  |
+| Yamagata            | JPN  |
+| Fukui               | JPN  |
+| Hiratsuka           | JPN  |
+| Mito                | JPN  |
+| Sasebo              | JPN  |
+| Hachinohe           | JPN  |
+| Takasaki            | JPN  |
+| Shimizu             | JPN  |
+| Kurume              | JPN  |
+| Fuji                | JPN  |
+| Soka                | JPN  |
+| Fuchu               | JPN  |
+| Chigasaki           | JPN  |
+| Atsugi              | JPN  |
+| Numazu              | JPN  |
+| Ageo                | JPN  |
+| Yamato              | JPN  |
+| Matsumoto           | JPN  |
+| Kure                | JPN  |
+| Takarazuka          | JPN  |
+| Kasukabe            | JPN  |
+| Chofu               | JPN  |
+| Odawara             | JPN  |
+| Kofu                | JPN  |
+| Kushiro             | JPN  |
+| Kishiwada           | JPN  |
+| Hitachi             | JPN  |
+| Nagaoka             | JPN  |
+| Itami               | JPN  |
+| Uji                 | JPN  |
+| Suzuka              | JPN  |
+| Hirosaki            | JPN  |
+| Ube                 | JPN  |
+| Kodaira             | JPN  |
+| Takaoka             | JPN  |
+| Obihiro             | JPN  |
+| Tomakomai           | JPN  |
+| Saga                | JPN  |
+| Sakura              | JPN  |
+| Kamakura            | JPN  |
+| Mitaka              | JPN  |
+| Izumi               | JPN  |
+| Hino                | JPN  |
+| Hadano              | JPN  |
+| Ashikaga            | JPN  |
+| Tsu                 | JPN  |
+| Sayama              | JPN  |
+| Yachiyo             | JPN  |
+| Tsukuba             | JPN  |
+| Tachikawa           | JPN  |
+| Kumagaya            | JPN  |
+| Moriguchi           | JPN  |
+| Otaru               | JPN  |
+| Anjo                | JPN  |
+| Narashino           | JPN  |
+| Oyama               | JPN  |
+| Ogaki               | JPN  |
+| Matsue              | JPN  |
+| Kawanishi           | JPN  |
+| Hitachinaka         | JPN  |
+| Niiza               | JPN  |
+| Nagareyama          | JPN  |
+| Tottori             | JPN  |
+| Tama                | JPN  |
+| Iruma               | JPN  |
+| Ota                 | JPN  |
+| Omuta               | JPN  |
+| Komaki              | JPN  |
+| Ome                 | JPN  |
+| Kadoma              | JPN  |
+| Yamaguchi           | JPN  |
+| Higashimurayama     | JPN  |
+| Yonago              | JPN  |
+| Matsubara           | JPN  |
+| Musashino           | JPN  |
+| Tsuchiura           | JPN  |
+| Joetsu              | JPN  |
+| Miyakonojo          | JPN  |
+| Misato              | JPN  |
+| Kakamigahara        | JPN  |
+| Daito               | JPN  |
+| Seto                | JPN  |
+| Kariya              | JPN  |
+| Urayasu             | JPN  |
+| Beppu               | JPN  |
+| Niihama             | JPN  |
+| Minoo               | JPN  |
+| Fujieda             | JPN  |
+| Abiko               | JPN  |
+| Nobeoka             | JPN  |
+| Tondabayashi        | JPN  |
+| Ueda                | JPN  |
+| Kashihara           | JPN  |
+| Matsusaka           | JPN  |
+| Isesaki             | JPN  |
+| Zama                | JPN  |
+| Kisarazu            | JPN  |
+| Noda                | JPN  |
+| Ishinomaki          | JPN  |
+| Fujinomiya          | JPN  |
+| Kawachinagano       | JPN  |
+| Imabari             | JPN  |
+| Aizuwakamatsu       | JPN  |
+| Higashihiroshima    | JPN  |
+| Habikino            | JPN  |
+| Ebetsu              | JPN  |
+| Hofu                | JPN  |
+| Kiryu               | JPN  |
+| Okinawa             | JPN  |
+| Yaizu               | JPN  |
+| Toyokawa            | JPN  |
+| Ebina               | JPN  |
+| Asaka               | JPN  |
+| Higashikurume       | JPN  |
+| Ikoma               | JPN  |
+| Kitami              | JPN  |
+| Koganei             | JPN  |
+| Iwatsuki            | JPN  |
+| Mishima             | JPN  |
+| Handa               | JPN  |
+| Muroran             | JPN  |
+| Komatsu             | JPN  |
+| Yatsushiro          | JPN  |
+| Iida                | JPN  |
+| Tokuyama            | JPN  |
+| Kokubunji           | JPN  |
+| Akishima            | JPN  |
+| Iwakuni             | JPN  |
+| Kusatsu             | JPN  |
+| Kuwana              | JPN  |
+| Sanda               | JPN  |
+| Hikone              | JPN  |
+| Toda                | JPN  |
+| Tajimi              | JPN  |
+| Ikeda               | JPN  |
+| Fukaya              | JPN  |
+| Ise                 | JPN  |
+| Sakata              | JPN  |
+| Kasuga              | JPN  |
+| Kamagaya            | JPN  |
+| Tsuruoka            | JPN  |
+| Hoya                | JPN  |
+| Nishio              | JPN  |
+| Tokai               | JPN  |
+| Inazawa             | JPN  |
+| Sakado              | JPN  |
+| Isehara             | JPN  |
+| Takasago            | JPN  |
+| Fujimi              | JPN  |
+| Urasoe              | JPN  |
+| Yonezawa            | JPN  |
+| Konan               | JPN  |
+| Yamatokoriyama      | JPN  |
+| Maizuru             | JPN  |
+| Onomichi            | JPN  |
+| Higashimatsuyama    | JPN  |
+| Kimitsu             | JPN  |
+| Isahaya             | JPN  |
+| Kanuma              | JPN  |
+| Izumisano           | JPN  |
+| Kameoka             | JPN  |
+| Mobara              | JPN  |
+| Narita              | JPN  |
+| Kashiwazaki         | JPN  |
+| Tsuyama             | JPN  |
+| Seoul               | KOR  |
+| Pusan               | KOR  |
+| Inchon              | KOR  |
+| Taegu               | KOR  |
+| Taejon              | KOR  |
+| Kwangju             | KOR  |
+| Ulsan               | KOR  |
+| Songnam             | KOR  |
+| Puchon              | KOR  |
+| Suwon               | KOR  |
+| Anyang              | KOR  |
+| Chonju              | KOR  |
+| Chongju             | KOR  |
+| Koyang              | KOR  |
+| Ansan               | KOR  |
+| Pohang              | KOR  |
+| Chang-won           | KOR  |
+| Masan               | KOR  |
+| Kwangmyong          | KOR  |
+| Chonan              | KOR  |
+| Chinju              | KOR  |
+| Iksan               | KOR  |
+| Pyongtaek           | KOR  |
+| Kumi                | KOR  |
+| Uijongbu            | KOR  |
+| Kyongju             | KOR  |
+| Kunsan              | KOR  |
+| Cheju               | KOR  |
+| Kimhae              | KOR  |
+| Sunchon             | KOR  |
+| Mokpo               | KOR  |
+| Yong-in             | KOR  |
+| Wonju               | KOR  |
+| Kunpo               | KOR  |
+| Chunchon            | KOR  |
+| Namyangju           | KOR  |
+| Kangnung            | KOR  |
+| Chungju             | KOR  |
+| Andong              | KOR  |
+| Yosu                | KOR  |
+| Kyongsan            | KOR  |
+| Paju                | KOR  |
+| Yangsan             | KOR  |
+| Ichon               | KOR  |
+| Asan                | KOR  |
+| Koje                | KOR  |
+| Kimchon             | KOR  |
+| Nonsan              | KOR  |
+| Kuri                | KOR  |
+| Chong-up            | KOR  |
+| Chechon             | KOR  |
+| Sosan               | KOR  |
+| Shihung             | KOR  |
+| Tong-yong           | KOR  |
+| Kongju              | KOR  |
+| Yongju              | KOR  |
+| Chinhae             | KOR  |
+| Sangju              | KOR  |
+| Poryong             | KOR  |
+| Kwang-yang          | KOR  |
+| Miryang             | KOR  |
+| Hanam               | KOR  |
+| Kimje               | KOR  |
+| Yongchon            | KOR  |
+| Sachon              | KOR  |
+| Uiwang              | KOR  |
+| Naju                | KOR  |
+| Namwon              | KOR  |
+| Tonghae             | KOR  |
+| Mun-gyong           | KOR  |
++---------------------+------+
+318 rows in set (0.00 sec)
+
+mysql> select name, countrycode '나라' from city where (countrycode="kor" or countrycode="jpn" or countrycode="can") and population >50000000;
+Empty set (0.00 sec)
+
+mysql> select name, countrycode '나라' from city where (countrycode="kor" or countrycode="jpn" or countrycode="can") and population >5000000;
++-------+------+
+| name  | 나라 |
++-------+------+
+| Tokyo | JPN  |
+| Seoul | KOR  |
++-------+------+
+2 rows in set (0.00 sec)
+
+mysql> select name, countrycode '나라' from city where (countrycode="kor" or countrycode="jpn" or countrycode="초ㅜ") and population >5000000;
+ERROR 1267 (HY000): Illegal mix of collations (latin1_swedish_ci,IMPLICIT) and (euckr_korean_ci,COERCIBLE) for operation '='
+mysql> select name, countrycode '나라' from city where (countrycode="kor" or countrycode="jpn" or countrycode=chn") and population >5000000;
+    ">
+    "> ^C
+mysql> select name, countrycode '나라' from city where (countrycode="kor" or countrycode="jpn" or countrycode="chn") and population >5000000;
++-----------+------+
+| name      | 나라 |
++-----------+------+
+| Shanghai  | CHN  |
+| Peking    | CHN  |
+| Chongqing | CHN  |
+| Tianjin   | CHN  |
+| Tokyo     | JPN  |
+| Seoul     | KOR  |
++-----------+------+
+6 rows in set (0.00 sec)
+
+mysql> select * from city where (countrycode="kor" or countrycode="jpn" or countrycode="chn") and population >5000000;
++------+-----------+-------------+-----------+------------+
+| ID   | Name      | CountryCode | District  | Population |
++------+-----------+-------------+-----------+------------+
+| 1890 | Shanghai  | CHN         | Shanghai  |    9696300 |
+| 1891 | Peking    | CHN         | Peking    |    7472000 |
+| 1892 | Chongqing | CHN         | Chongqing |    6351600 |
+| 1893 | Tianjin   | CHN         | Tianjin   |    5286800 |
+| 1532 | Tokyo     | JPN         | Tokyo-to  |    7980230 |
+| 2331 | Seoul     | KOR         | Seoul     |    9981619 |
++------+-----------+-------------+-----------+------------+
+6 rows in set (0.00 sec)
+
+mysql> select * from city where (countrycode="kor" or countrycode="jpn" or countrycode="chn") and population >5000000;
++------+-----------+-------------+-----------+------------+
+| ID   | Name      | CountryCode | District  | Population |
++------+-----------+-------------+-----------+------------+
+| 1890 | Shanghai  | CHN         | Shanghai  |    9696300 |
+| 1891 | Peking    | CHN         | Peking    |    7472000 |
+| 1892 | Chongqing | CHN         | Chongqing |    6351600 |
+| 1893 | Tianjin   | CHN         | Tianjin   |    5286800 |
+| 1532 | Tokyo     | JPN         | Tokyo-to  |    7980230 |
+| 2331 | Seoul     | KOR         | Seoul     |    9981619 |
++------+-----------+-------------+-----------+------------+
+6 rows in set (0.00 sec)
+
+mysql> select count(*) from city where (countrycode="kor" or countrycode="jpn" or countrycode="chn") and population >5000000;
++----------+
+| count(*) |
++----------+
+|        6 |
++----------+
+1 row in set (0.00 sec)
+
+mysql> select count(name) from city where (countrycode="kor" or countrycode="jpn" or countrycode="chn") and population >5000000;
++-------------+
+| count(name) |
++-------------+
+|           6 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> create database mega;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mega               |
+| mysql              |
+| performance_schema |
+| product            |
+| sakila             |
+| sys                |
+| world              |
++--------------------+
+8 rows in set (0.00 sec)
+
+mysql> use mega;
+Database changed
+mysql> create table books(
+    -> book_id int auto_increament primary key,
+    -> title varchar(50) not null,
+    -> price int not null
+    -> );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'auto_increament primary key,
+title varchar(50) not null,
+price int not null
+)' at line 2
+mysql> create table books(
+    -> book_id int auto_increment primary key,
+    -> title varchar(50) not null,
+    -> price int not null
+    -> );
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> show tables;
++----------------+
+| Tables_in_mega |
++----------------+
+| books          |
++----------------+
+1 row in set (0.00 sec)
+
+mysql> desc books;
++---------+-------------+------+-----+---------+----------------+
+| Field   | Type        | Null | Key | Default | Extra          |
++---------+-------------+------+-----+---------+----------------+
+| book_id | int         | NO   | PRI | NULL    | auto_increment |
+| title   | varchar(50) | NO   |     | NULL    |                |
+| price   | int         | NO   |     | NULL    |                |
++---------+-------------+------+-----+---------+----------------+
+3 rows in set (0.00 sec)
+
+mysql> insert into books(book_id, title , price ) values (0,"비전공자를 위한 이해할 수 있는 it 지식",15120);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from books;
++---------+----------------------------------------+-------+
+| book_id | title                                  | price |
++---------+----------------------------------------+-------+
+|       1 | 비전공자를 위한 이해할 수 있는 it 지식 | 15120 |
++---------+----------------------------------------+-------+
+1 row in set (0.01 sec)
+
+mysql> insert into books values (0,"혼자 공부하는 파이썬",16200);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into books(title,price) values ("Do it! 점프 투 파이썬",16920);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from books;
++---------+----------------------------------------+-------+
+| book_id | title                                  | price |
++---------+----------------------------------------+-------+
+|       1 | 비전공자를 위한 이해할 수 있는 it 지식 | 15120 |
+|       2 | 혼자 공부하는 파이썬                   | 16200 |
+|       3 | Do it! 점프 투 파이썬                  | 16920 |
++---------+----------------------------------------+-------+
+3 rows in set (0.00 sec)
+
+mysql> select title from books where price > 16000;
++-----------------------+
+| title                 |
++-----------------------+
+| 혼자 공부하는 파이썬  |
+| Do it! 점프 투 파이썬 |
++-----------------------+
+2 rows in set (0.00 sec)
+
+mysql> update books set price = 15000 where book_id = 1;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update books set price = 16000 where book_id = 2;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update books set price = 16000 where book_id = 3;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from books;
++---------+----------------------------------------+-------+
+| book_id | title                                  | price |
++---------+----------------------------------------+-------+
+|       1 | 비전공자를 위한 이해할 수 있는 it 지식 | 15000 |
+|       2 | 혼자 공부하는 파이썬                   | 16000 |
+|       3 | Do it! 점프 투 파이썬                  | 16000 |
++---------+----------------------------------------+-------+
+3 rows in set (0.00 sec)
+
+mysql> update books set price = 16000, title="Do it! 점프 투 파이썬 where book_id = 3;
+    "> update books set price = 16000, title="Do it! 점프 투 파이썬 where book_id = 3^Z;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Do it! 점프 투 파이썬 where book_id = 3' at line 2
+mysql> update books set price = 16000, title="Do it! 점프 투 파이똔" where book_id = 3;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update books set price = price+1000, title="Do it! 점프 투 파이똔" where book_id = 3;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from books;
++---------+----------------------------------------+-------+
+| book_id | title                                  | price |
++---------+----------------------------------------+-------+
+|       1 | 비전공자를 위한 이해할 수 있는 it 지식 | 15000 |
+|       2 | 혼자 공부하는 파이썬                   | 16000 |
+|       3 | Do it! 점프 투 파이똔                  | 17000 |
++---------+----------------------------------------+-------+
+3 rows in set (0.01 sec)
+
+mysql> delete from books where book_id >= 3;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from books;
++---------+----------------------------------------+-------+
+| book_id | title                                  | price |
++---------+----------------------------------------+-------+
+|       1 | 비전공자를 위한 이해할 수 있는 it 지식 | 15000 |
+|       2 | 혼자 공부하는 파이썬                   | 16000 |
++---------+----------------------------------------+-------+
+2 rows in set (0.01 sec)
+
+mysql> insert into books(title, price) values ("자바의 정석", 30000);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from books;
++---------+----------------------------------------+-------+
+| book_id | title                                  | price |
++---------+----------------------------------------+-------+
+|       1 | 비전공자를 위한 이해할 수 있는 it 지식 | 15000 |
+|       2 | 혼자 공부하는 파이썬                   | 16000 |
+|       4 | 자바의 정석                            | 30000 |
++---------+----------------------------------------+-------+
+3 rows in set (0.00 sec)
+
+mysql> select * from books;
++---------+----------------------------------------+-------+
+| book_id | title                                  | price |
++---------+----------------------------------------+-------+
+|       1 | 비전공자를 위한 이해할 수 있는 it 지식 | 15000 |
+|       2 | 혼자 공부하는 파이썬                   | 16000 |
+|       4 | 자바의 정석                            | 30000 |
++---------+----------------------------------------+-------+
+3 rows in set (0.00 sec)
+
+mysql> drop table;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> drop table books;
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> show tables;
+Empty set (0.01 sec)
+
+mysql> select * from tables;
+ERROR 1146 (42S02): Table 'mega.tables' doesn't exist
+mysql>
+mysql> drop databases mega;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'databases mega' at line 1
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mega               |
+| mysql              |
+| performance_schema |
+| product            |
+| sakila             |
+| sys                |
+| world              |
++--------------------+
+8 rows in set (0.00 sec)
+
+mysql> drop database mega;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| product            |
+| sakila             |
+| sys                |
+| world              |
++--------------------+
+7 rows in set (0.00 sec)
+
+mysql> create database mega;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mega               |
+| mysql              |
+| performance_schema |
+| product            |
+| sakila             |
+| sys                |
+| world              |
++--------------------+
+8 rows in set (0.01 sec)
+
+mysql> use mega
+Database changed
+mysql> create table books(
+    -> book_id int auto_increment primary key,
+    -> title varchar(50) not null,
+    -> author varchar(50) not null,
+    -> price int not null
+    -> );
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> insert into books(title, author, price) values ("미드나잇 라이브러리" ,"노진선", 14220);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into books(title, author, price) values ("호랑이를 덫에 가두면" ,"강나은", 12420);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into books(title, author, price) values ("어느 날 공주가 되어버렸다 5" ,"플루토스", 32400);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from books;
++---------+-----------------------------+----------+-------+
+| book_id | title                       | author   | price |
++---------+-----------------------------+----------+-------+
+|       1 | 미드나잇 라이브러리         | 노진선   | 14220 |
+|       2 | 호랑이를 덫에 가두면        | 강나은   | 12420 |
+|       3 | 어느 날 공주가 되어버렸다 5 | 플루토스 | 32400 |
++---------+-----------------------------+----------+-------+
+3 rows in set (0.01 sec)
+
+mysql> select count(price) where price >= 14000;
+ERROR 1054 (42S22): Unknown column 'price' in 'field list'
+mysql> select count(price) from books where price >= 14000;
++--------------+
+| count(price) |
++--------------+
+|            2 |
++--------------+
+1 row in set (0.00 sec)
+
+mysql> update books set price = price - (price*0.2) where book_id = 1;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from books;
++---------+-----------------------------+----------+-------+
+| book_id | title                       | author   | price |
++---------+-----------------------------+----------+-------+
+|       1 | 미드나잇 라이브러리         | 노진선   | 11376 |
+|       2 | 호랑이를 덫에 가두면        | 강나은   | 12420 |
+|       3 | 어느 날 공주가 되어버렸다 5 | 플루토스 | 32400 |
++---------+-----------------------------+----------+-------+
+3 rows in set (0.00 sec)
+
+mysql> update books set price = price - (price*0.2);
+Query OK, 3 rows affected (0.01 sec)
+Rows matched: 3  Changed: 3  Warnings: 0
+
+mysql> select * from books;
++---------+-----------------------------+----------+-------+
+| book_id | title                       | author   | price |
++---------+-----------------------------+----------+-------+
+|       1 | 미드나잇 라이브러리         | 노진선   |  9101 |
+|       2 | 호랑이를 덫에 가두면        | 강나은   |  9936 |
+|       3 | 어느 날 공주가 되어버렸다 5 | 플루토스 | 25920 |
++---------+-----------------------------+----------+-------+
+3 rows in set (0.00 sec)
+
+mysql>
+  
