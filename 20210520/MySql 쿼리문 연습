@@ -1,0 +1,28 @@
+Query all columns for all American cities in the CITY table with populations larger than . The CountryCode for America is . 100000USA
+
+The CITY table is described as follows:
+Field         Type
+ID            Numebr
+NAME          VARCHAR2(17)
+COUNTRYCODE   VARCHAR2(3)
+DISTRICT      VARCHAR2(30)
+POPULATION    NUMBER
+
+Solution :
+select * from City where countrycode = "USA" and Population > 100000;
+
+Result : 
+Your Output (stdout)
+3878 Scottsdale USA Arizona 202705
+3965 Corona USA California 124966
+3973 Concord USA California 121780
+3977 Cedar Rapids USA Iowa 120758
+3982 Coral Springs USA Florida 117549
+Expected Output
+
+Download
+3878 Scottsdale USA Arizona 202705 
+3965 Corona USA California 124966 
+3973 Concord USA California 121780 
+3977 Cedar Rapids USA Iowa 120758 
+3982 Coral Springs USA 
