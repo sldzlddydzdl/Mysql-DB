@@ -1,0 +1,38 @@
+-- 영화 카테고리별 수입 ( 카테고리 , 총 수입 ) 
+
+과정 :
+
+select * from category;
+select * from film_category;
+
+select c.name, fc.film_id from category c join film_category fc on c.category_id = fc.category_id;
+
+select (film.rental_duration*film.rental_rate) price from film;
+
+
+최정 query : 
+select t1.name ,sum(film.rental_duration*film.rental_rate) sum 
+from ( select c.name, fc.film_id from category c join film_category fc on c.category_id = fc.category_id ) t1
+join film on film.film_id = t1.film_id
+group by t1.name;
+
+
+output :
+
+name      sum
+Action	815.83
+Animation	907.77
+Children	850.98
+Classics	794.11
+Comedy	919.14
+Documentary	864.76
+Drama	945.85
+Family	969.43
+Foreign	1179.27
+Games	1005.91
+Horror	813.28
+Music	800.33
+New	924.01
+Sci-Fi	959.02
+Sports	1131.51
+Travel	1033.95
