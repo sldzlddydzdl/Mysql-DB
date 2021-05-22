@@ -1,0 +1,29 @@
+-- 필름 당 수입이 가장 많은 것 10개 ( 영화제목, 카테고리 , 총 수입 )
+
+
+과정 : 
+select c.name, fc.film_id from category c join film_category fc on c.category_id = fc.category_id;
+
+select film.title , film.rental_duration*film.rental_rate "수입" 
+from film;
+
+
+최종 query :
+select film.title, t1.name , film.rental_duration*film.rental_rate sum
+from (select c.name, fc.film_id from category c join film_category fc on c.category_id = fc.category_id) t1 
+join film on film.film_id = t1.film_id 
+order by sum desc 
+limit 10;
+
+output : 
+title              name        sum
+BIKINI BORROWERS	Animation	34.93
+BOILED DARES	Travel	34.93
+BORN SPINAL	Travel	34.93
+BOWFINGER GABLES	Horror	34.93
+BROOKLYN DESERT	Foreign	34.93
+BUCKET BROTHERHOOD	Travel	34.93
+CHAMBER ITALIAN	Music	34.93
+CHASING FIGHT	Family	34.93
+CHINATOWN GLADIATOR	New	34.93
+COLDBLOODED DARLING	Sci-Fi	34.93
