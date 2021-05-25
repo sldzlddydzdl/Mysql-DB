@@ -1,0 +1,28 @@
+query : 
+select if(T.Grade < 8, "NULL" , T.Name) Name, T.Grade , T.Marks 
+from (select S.name Name, Floor(if(S.Marks = 100 , 10 , S.Marks/10+1)) Grade ,S.Marks Marks 
+from Students S) T order by T.Grade desc , Name;
+
+
+Output : 
+Britney 10 95
+Heraldo 10 94
+Julia 10 96
+Kristeen 10 100
+Stuart 10 99
+Amina 9 89
+Christene 9 88
+Salma 9 81
+Samantha 9 87
+Scarlet 9 80
+Vivek 9 84
+Aamina 8 77
+Belvet 8 78
+Paige 8 74
+Priya 8 76
+Priyanka 8 77
+NULL 7 64
+NULL 7 66
+NULL 6 55
+NULL 4 34
+NULL 3 24
