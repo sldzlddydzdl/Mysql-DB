@@ -1,6 +1,9 @@
 query :
 select distinct(city) from station where id%2=0 order by city;
 
+distinct : 중복을 없애주지만 정렬을 해주지 않는다.
+group by : 중복을 없애주고 정렬도 해준다.
+
 result :
 
 Aguanga
