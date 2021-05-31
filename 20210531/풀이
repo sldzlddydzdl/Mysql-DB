@@ -1,0 +1,9 @@
+
+query : 
+
+select count(*) - count(distinct(city)) from station;
+
+
+result : 
+Your Output (stdout)
+13
