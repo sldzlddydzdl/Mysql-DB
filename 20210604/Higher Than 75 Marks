@@ -1,0 +1,23 @@
+query : 
+
+select name from students where marks > 75 order by right(name , 3) , students.id;
+
+result : 
+
+Stuart 
+Kristeen 
+Christene 
+Amina 
+Aamina 
+Priya 
+Heraldo 
+Scarlet 
+Julia 
+Salma 
+Britney 
+Priyanka 
+Samantha 
+Vivek 
+Belvet 
+Devil 
+Evil
