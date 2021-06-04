@@ -1,0 +1,49 @@
+query :
+
+select distinct(city) from station 
+where left(city,1) in ('a','e','i','o','u') 
+and right(city, 1) in ('a','e','i','o','u');
+
+-- example
+-- -- OR조건 표현
+-- WHERE Condition = 'A'
+-- OR Condition = 'B'
+
+-- -- IN조건
+-- WHERE Condition IN ('A','B')
+-- IN조건 장점
+-- 목록에 넣을 값이 여러개 일때, IN 연산자가 OR보다 쓰기도, 보기도 이해하기도 쉽다.
+-- IN을 사용하면 조건 순서를 보다 쉽게 관리 할수 있고, 연산자 수도 줄어든다
+-- IN 연산자가 OR 연산자 보다 실행 속도가 빠르다
+-- IN 연산자안에 다른 SELECT 문(서브쿼리?)를 넣을 수 있다.
+
+result : 
+
+Upperco
+Aguanga
+East China
+East Irvine
+Amo
+Eleele
+Oconee
+Amazonia
+Aliso Viejo
+Andersonville
+Arkadelphia
+Eriline
+Eastlake
+Arispe
+Ermine
+Eufaula
+Osborne
+Elm Grove
+Atlantic Mine
+Oshtemo
+Archie
+Alpine
+Ojai
+Urbana
+Alba
+Eskridge
+Ozona
+Acme
