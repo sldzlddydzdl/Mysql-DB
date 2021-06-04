@@ -1,0 +1,53 @@
+ query : 
+ 
+ select distinct city from station
+where left(city, 1) not in ('a' , 'e' , 'i', 'o', 'u');
+
+result : 
+
+Kissee Mills
+Loma Mar
+Sandy Hook
+Tipton
+Turner
+Slidell
+Negreet
+Glencoe
+Chelsea
+Chignik Lagoon
+Pelahatchie
+Hanna City
+Dorrance
+Monument
+Manchester
+Prescott
+Graettinger
+Cahone
+Sturgis
+Highwood
+Waipahu
+Bowdon
+Tyler
+Watkins
+Republic
+Millville
+Bowdon Junction
+Morenci
+South El Monte
+Hoskinston
+Talbert
+Mccomb
+Kirk
+Carlock
+Seward
+Gustine
+Delano
+Westphalia
+Saint Elmo
+Roy
+  .
+  .
+  .
+  .
+  .
+  
