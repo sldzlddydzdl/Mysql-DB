@@ -1,0 +1,9 @@
+query :
+
+select round(LONG_W, 4) from (
+select max(LAT_N) MAX from station where LAT_N < 137.2345
+    ) A join station on a.MAX = station.LAT_N;
+    
+select :
+
+117.2465
