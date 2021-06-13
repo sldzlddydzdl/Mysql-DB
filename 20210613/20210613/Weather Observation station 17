@@ -1,0 +1,8 @@
+query : 
+
+select ROUND(LONG_W, 4) from
+(select min(LAT_N) MIN from station where LAT_N > 38.7780 ) A join station 
+on A.MIN = station.LAT_N;
+
+result : 
+70.1378
