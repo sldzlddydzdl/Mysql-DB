@@ -1,0 +1,15 @@
+Manhattan Dsitance 
+
+P1(a,b) , P2(c,d)
+
+result = | a- c | + | b - d |
+
+
+
+query :
+
+select round(abs(min(LAT_N) - max(LAT_N)) + abs(min(LONG_W) - max(LONG_W)),4) from station;
+
+result : 
+
+259.6859
