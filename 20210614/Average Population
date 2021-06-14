@@ -1,0 +1,7 @@
+query : 
+
+select round(avg(population)) from city;
+
+result 
+
+454250
