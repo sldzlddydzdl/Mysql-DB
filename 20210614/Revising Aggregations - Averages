@@ -1,0 +1,7 @@
+query : 
+
+select avg(population) from city where district = 'California';
+
+result : 
+
+113000.667
