@@ -1,0 +1,11 @@
+ceil 소수점 올림
+floor 소수점 내림
+truncate ( 20.16, 1 ) = > 20.1
+
+query : 
+
+select ceil(avg(salary) -  avg(replace(salary , '0' , ''))) from employees;
+
+result : 
+
+2253
