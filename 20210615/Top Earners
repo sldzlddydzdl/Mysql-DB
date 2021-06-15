@@ -1,0 +1,11 @@
+query : 
+
+select (months*salary) Smax , count(*) from employee
+group by Smax
+order by Smax desc limit 1;
+
+// Smax 가 제일큰수를 기준으로 해서 갯수도 구해라
+
+result : 
+
+108064 7 
