@@ -1,0 +1,7 @@
+query : 
+
+select (max(population) - min(population))  from city; 
+
+result :
+
+4695354
