@@ -1,0 +1,38 @@
+1.Full Score(만점)을 받은, 챌린지가 2개 이상인 참가자들을 찾자.
+2.이 때 만점이란, Submissions 테이블의 score 값과 Difficulty 테이블의 score 값과 일치하는 것을 찾자
+3.2가지 정렬 기준을 만족해서 출력시키기
+
+query : 
+
+select H.hacker_id, H.name
+from Submissions S
+    join Challenges C on S.challenge_id = C.challenge_id
+    join Difficulty D on C.difficulty_level = D.difficulty_level
+    join Hackers H on s.hacker_id = H.hacker_id
+WHERE S.score = D.score AND C.difficulty_level = D.difficulty_level
+GROUP BY H.hacker_id, H.name
+HAVING COUNT(H.hacker_id) > 1
+ORDER BY COUNT(H.hacker_id) DESC, H.hacker_id;
+
+result : 
+
+27232 Phillip 
+28614 Willie 
+15719 Christina 
+43892 Roy 
+14246 David 
+14372 Michelle 
+18330 Lawrence 
+26133 Jacqueline 
+26253 John 
+30128 Brandon 
+35583 Norma 
+13944 Victor 
+17295 Elizabeth 
+19076 Matthew 
+26895 Evelyn 
+32172 Jonathan 
+41293 Robin 
+45386 Christina 
+45785 Jesse 
+49652 Christine {-truncated-}
